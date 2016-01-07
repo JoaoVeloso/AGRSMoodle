@@ -1,0 +1,13 @@
+Acrónimos
+WWW - World Wide Web
+NTP - Network Time Protocol
+LTS - Long Time Suport
+NFS - Network File System
+RAM - Random Access Memory
+RAID - Redundant Array of Independent Drives
+DNS - Domain Name Service
+IP - Internet Protocol
+DHCP - Dynamic Host Configuration Protocol
+SSH - Secure Shell
+PHP - Hypertext Preprocessor
+GPG - GNU Privacy Guard
