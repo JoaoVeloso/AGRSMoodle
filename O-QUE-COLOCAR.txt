@@ -1,0 +1,27 @@
+1- Introdução
+2- Cenário da rede
+  2.1 Configuração da rede
+  
+
+
+3 - Configuração de serviços
+  3.1 - Serviços pressupostos
+  	3.1.1 DNS 
+	3.1.2 NFS
+	3.1.3 NTP
+	3.1.4 SSH
+
+  3.2 - Configuração de serviços
+	3.2.1 Apache
+	3.2.2 HAProxy
+	3.2.3 Moodle
+	3.2.4 PostgreSQL
+
+
+
+Gestão de logs e backups - Página que fala sobre script que gere os logs, manda por NFS para a máquina "central"
+ 
+ 
+4 - (se nao faltar nada antes) conclusão
+5 - bibliografia
+
