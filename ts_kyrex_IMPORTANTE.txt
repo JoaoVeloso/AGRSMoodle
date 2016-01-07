@@ -1,0 +1,24 @@
+﻿<21:16:05> "[ᴋʏʀᴇx] Kyrex": Ativar acesso DB remoto:
+/etc/postgresql/9.3/main/pg_hba.conf 
+    -> host all all 10.101.1.0/24 trust
+
+/etc/postgresql/9.3/main/postgresql.conf
+    -> listen_addresses='*'
+
+/etc/init.d/postgresql restart
+
+----------------------------------------------------------------------
+
+
+<21:21:07> "[ᴋʏʀᴇx] Kyrex": inicialmente comecei com duas maquinas com o moodle instalado
+<21:21:34> "[ᴋʏʀᴇx] Kyrex": e adicionei outra também com uma copia do moodle, mas que apenas irá fornecer a sua base de dados.
+<21:22:04> "[ᴋʏʀᴇx] Kyrex": a essa maquina adicional vou chamar DB agora, tu das o nome que quiseres
+<21:22:40> "[ᴋʏʀᴇx] Kyrex": Em cada uma das maquinas de moodle, no ficheiro config.php, adicionei o ip da maquina DB no campo $CFG->dbhost    = '10.101.1.25';
+<21:23:18> "[ᴋʏʀᴇx] Kyrex": Troquei ainda o $CFG->wwwroot   = '10.101.1.X'; para $CFG->wwwroot   = 'http://www.agrsmoodle.pt';
+<21:24:05> "[ᴋʏʀᴇx] Kyrex": Como o $CFG->dbuser    = 'moodleadmin'; e o $CFG->dbpass    = '1'; já estavam bem configurados ( username e password de acesso à DB ) nao mudei mais nada
+<21:24:26> "[ᴋʏʀᴇx] Kyrex": de seguida, na maquina DB, no ficheiro /etc/postgresql/9.3/main/pg_hba.conf
+<21:24:33> "[ᴋʏʀᴇx] Kyrex": adicionei a linha host all all 10.101.1.0/24 trust
+<21:24:45> "[ᴋʏʀᴇx] Kyrex": de forma a permitir todos os endereços na rede a pedir a database.
+<21:25:38> "[ᴋʏʀᴇx] Kyrex": Tive ainda que, no ficheiro /etc/postgresql/9.3/main/postgresql.conf, remover o # e mudar a linha de listen_addresses='localhost' para listen_addresses='*'
+<21:25:51> "[ᴋʏʀᴇx] Kyrex": depois de dar restart com /etc/init.d/postgresql restart, tinha tudo a funcionar
+<21:27:07> "[ᴋʏʀᴇx] Kyrex": // se achas que me esqueci de alguma coisa, diz. vou pensar nos backups agora, tantos ficheiros...
