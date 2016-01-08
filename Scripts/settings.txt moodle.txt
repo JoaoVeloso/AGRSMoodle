@@ -1,0 +1,3 @@
+/var/www/
+/etc/fstab
+/etc/apache2/
