@@ -1,0 +1,54 @@
+﻿#!/usr/bin/perl
+use strict;
+use warnings;
+use Sys::Syslog;
+
+
+my $destino = "/nfs/";
+chomp(my $dow = `date +"%w"`); # 
+chomp(my $today = `date +%A`);
+chomp(my $hostname = `hostname -s`);
+my $nome_file = "$hostname-$today.tgz";
+chomp(my $whoami = `whoami`);
+
+chomp(my $check = `ls /nfs | wc -l`);
+
+
+if(@ARGV != 1){
+	print STDERR ("Erro de sintaxe: [ $0 <settings>]\n");
+	exit(1);
+}else{
+	if(!-e "$ARGV[0]"){
+		print ("O ficheiro \"$ARGV[0]\" não existe\n");
+		openlog($whoami, "ndelay,pid", "local3");
+		syslog("err", "Ficheiro \"$ARGV[0]\" não existente\n");
+		closelog();
+		exit(2);
+	}else{
+		openlog($whoami, "ndelay,pid", "local3");
+		syslog("info", "Iniciado backup\n");
+		closelog();
+
+		open(FILE, "<", $ARGV[0]); # abrir o ficheiro no argumento
+		chomp (my @backup_files = <FILE>);
+		close(FILE);
+				
+		if($dow == 0 || $check < 1){ # Backup completo se for Domingo OU se a pasta estiver vazia)
+			print("Backup Completo\n");
+			system("tar -cpzvf $destino/$nome_file @backup_files");
+			
+			openlog($whoami, "ndelay,pid", "local3");
+			syslog("info", "Backup completo finalizado\n");
+			closelog();
+			print("Backup completo finalizado\n");
+		}else{
+				print("Backup incremental\n");				
+				system("find @backup_files -mtime -1 | xargs tar -cpzvf $destino/$nome_file");# backup incremental
+			
+				openlog($whoami, "ndelay,pid", "local3");
+				syslog("info", "Backup incremental finalizado\n");
+				closelog();
+				print("Backup incremental finalizado\n");
+		}
+	}
+}
