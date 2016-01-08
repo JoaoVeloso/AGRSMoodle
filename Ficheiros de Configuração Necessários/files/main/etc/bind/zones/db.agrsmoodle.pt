@@ -1,0 +1,17 @@
+;
+; BIND data file for local loopback interface
+;
+$TTL	604800
+@	IN	SOA	cluster.agrsmoodle.pt. admin.agrsmoodle.pt. (
+			      4		; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+;
+
+@		IN	NS	cluster.agrsmoodle.pt.
+cluster		IN	A	10.101.1.2
+moodleserver1	IN	A	10.101.1.50
+moodleserver2	IN	A	10.101.1.99
+www		IN	CNAME	cluster.agrsmoodle.pt.
