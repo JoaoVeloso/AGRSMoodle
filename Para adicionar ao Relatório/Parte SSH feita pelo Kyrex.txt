@@ -1,0 +1,31 @@
+﻿Uma Shell Segura permite o acesso a uma máquina remota por meio de um túnel cifrado, garantindo acessos remotos com segurança reforçada contra ataques de roubo ou manipulação de informação intercambiada. Este serviço trabalha na porta 22 TCP. 
+
+Para iniciar a sua instalação recorremos ao comando:
+
+sudo apt-get install ssh
+
+A partir daqui o serviço encontra-se a funcionar, mas é recomendado que se proceda a sua configuração. Para isso teremos de aceder ao ficheiro:
+
+sudo nano /etc/ssh/sshd_config
+
+Aqui vamos restringir o acesso apenas a alguns clientes (AllowUsers *@xxx.xxx.xxx.xxx), mudar o tempo máximo para fazer login (LoginGraceTime 120) e negar o acesso ao utilizador root (PermitRootLogin no).
+
+Estas configurações serão aplicadas assim que o serviço for reiniciado com o comando:
+
+sudo service ssh restart
+
+No lado do cliente existem duas principais formas de aceder a uma outra máquina por ssh (shell), por linha de comandos ou de forma mais gráfica(ex: putty).
+
+Para aceder por shell utilizamos o comando:
+
+ssh 'cluster@10.101.1.2'
+
+Aparecerá um aviso a indicar que a autenticidade da máquina-destino não pôde ser verificada, perguntando se se pretende continuar mesmo assim; seleciona-se "yes". Com esta confirmação, será transmitida uma mensagem de aviso confirmando que a máquina indicada foi adicionada à lista de hosts conhecidos. Será pedida então a password do utilizador que se pretende conectar, que, após inserida correctamente, terá acesso a essa máquina por ssh.
+
+
+Para aceder por GUI, por exemplo em windows, podemos utilizar o putty. Apenas temos de inserir o endereço IP destino no campo "Host Name(or IP address)" e confirmar que se está a utilizar a porta 22.
+
+Após clicar em Open será pedido o nome de utilizado e a respectiva password, concluindo-se assim a ligação.
+
+
+Nota: Se existir uma configuração de acessos restritos por SSH à máquina, é necessário adicionar os endereços IP permitidos no ficheiro de configuração
