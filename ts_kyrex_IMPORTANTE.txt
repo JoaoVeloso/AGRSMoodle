@@ -22,3 +22,32 @@
 <21:25:38> "[ᴋʏʀᴇx] Kyrex": Tive ainda que, no ficheiro /etc/postgresql/9.3/main/postgresql.conf, remover o # e mudar a linha de listen_addresses='localhost' para listen_addresses='*'
 <21:25:51> "[ᴋʏʀᴇx] Kyrex": depois de dar restart com /etc/init.d/postgresql restart, tinha tudo a funcionar
 <21:27:07> "[ᴋʏʀᴇx] Kyrex": // se achas que me esqueci de alguma coisa, diz. vou pensar nos backups agora, tantos ficheiros...
+
+
+<00:41:36> "[ᴋʏʀᴇx] Kyrex": 
+
+cluster@moodlecluster:~$ sudo perl backup.pl settings.txt
+Backup Completo
+tar: Removing leading `/' from member names
+/etc/bind/
+/etc/bind/named.conf.options
+/etc/bind/bind.keys
+/etc/bind/zones/
+/etc/bind/zones/db.agrsmoodle.pt
+/etc/bind/zones/db.10.101.1
+/etc/bind/named.conf.local
+/etc/bind/db.127
+/etc/bind/db.0
+/etc/bind/db.empty
+/etc/bind/zones.rfc1918
+/etc/bind/named.conf.default-zones
+/etc/bind/rndc.key
+/etc/bind/db.local
+/etc/bind/db.root
+/etc/bind/db.255
+/etc/bind/named.conf
+/etc/exports
+/etc/ntp.conf
+/etc/ssh/sshd_config
+/etc/haproxy/haproxy.cfg
+Backup completo finalizado
